@@ -1,13 +1,21 @@
-import { StartedTestContainer } from "testcontainers";
+import {
+  StartedTestContainer,
+  getContainerRuntimeClient,
+} from "testcontainers";
 import { PostgreSqlContainer } from "@testcontainers/postgresql";
 import { Client } from "pg";
 
-describe("Redis", () => {
+describe("Preseeded test", () => {
   let container: StartedTestContainer;
   let client: Client;
 
   beforeEach(async () => {
-    container = await new PostgreSqlContainer("preseeded")
+    // const containerRuntimeClient = await getContainerRuntimeClient();
+    // console.log(containerRuntimeClient.info);
+
+    container = await new PostgreSqlContainer(
+      "preseeded:latest"
+    )
       .withUsername("postgres")
       .withPassword("pass123")
       .withExposedPorts(5432)
@@ -29,7 +37,7 @@ describe("Redis", () => {
     expect(todo.rows[0].name).toBe("slowpoke");
   });
 
-  it("contains slowpoke", async () => {
+  it("contains gengar", async () => {
     const todo = await select(client, 94);
     expect(todo.rows[0].name).toBe("gengar");
   });

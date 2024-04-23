@@ -2,7 +2,7 @@ import { StartedTestContainer } from "testcontainers";
 import { PostgreSqlContainer } from "@testcontainers/postgresql";
 import { Client } from "pg";
 
-describe("Redis", () => {
+describe("Container test", () => {
   let container: StartedTestContainer;
   let client: Client;
 
@@ -35,23 +35,23 @@ describe("Redis", () => {
   });
 
   it("works", async () => {
-    await insertIntoFoo(client, 4, "charmander", "fire");
+    await insertIntoPokemon_types(client, 4, "charmander", "fire");
   });
 
   it("works twice", async () => {
-    await insertIntoFoo(client, 4, "charmander", "fire");
+    await insertIntoPokemon_types(client, 4, "charmander", "fire");
   });
 
   it("works thrice", async () => {
-    await insertIntoFoo(client, 4, "charmander", "fire");
-  });
-
-  it("works qrice", async () => {
-    await insertIntoFoo(client, 4, "charmander", "fire");
+    await insertIntoPokemon_types(client, 4, "charmander", "fire");
   });
 
   it("works frice", async () => {
-    await insertIntoFoo(client, 4, "charmander", "fire");
+    await insertIntoPokemon_types(client, 4, "charmander", "fire");
+  });
+
+  it("works quince", async () => {
+    await insertIntoPokemon_types(client, 4, "charmander", "fire");
   });
 });
 
@@ -65,7 +65,7 @@ async function initClient(container: StartedTestContainer): Promise<Client> {
   });
 }
 
-async function insertIntoFoo(
+async function insertIntoPokemon_types(
   client: Client,
   id: number,
   name: string,
